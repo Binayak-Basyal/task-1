@@ -1,0 +1,35 @@
+.announcement-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 2rem;
+    background-color: #020e53ff;
+    color: white;
+    box-sizing: border-box;
+    display: none; /* hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+}
+
+.announcement-bar p {
+    margin: 0;
+    text-align: center;
+}
+
+.announcement-close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 15px;
+}
+
+/* 👇 Show only on desktop */
+@media screen and (min-width: 768px) {
+    .announcement-bar {
+        display: flex;
+    }
+}
