@@ -1,10 +1,17 @@
 import './Mealtime.css'
-import { Link, useNavigate } from 'react-router-dom';
-import React, { useRef } from 'react';
+import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom';
+import React, { useRef, useEffect } from 'react';
 
 function Mealtime({ setNavbarOpen }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const productsRef = useRef(null);
+
+ useEffect(() => {
+  if (window.location.pathname === "/mealtime") {
+    navigate("/mealtime/all", { replace: true });
+  }
+}, [navigate]);
 
   const handleBack = () => {
     setNavbarOpen(true);
@@ -14,7 +21,7 @@ function Mealtime({ setNavbarOpen }) {
   // Scroll left/right for desktop carousel
   const scrollProducts = (direction) => {
     if (productsRef.current) {
-      const scrollAmount = 220; 
+      const scrollAmount = 220;
       productsRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -35,60 +42,59 @@ function Mealtime({ setNavbarOpen }) {
           </div>
           <div className="mealtime-left">
             <ul>
-              <li><Link to="/">High Chair </Link></li>
-              <li><Link to="/playtime">Booster </Link></li>
-              <li><Link to="/bathtime">Tableware & Bibs </Link></li>
-              <li><Link to="/theplayboxes">Mealtime Accessories </Link></li>
-              <li><Link to="/gifts">Bundle & Save </Link></li>
-              <li><Link to="/bestseller">All Mealtime </Link></li>
+              <li>
+                <Link
+                  to="/mealtime/breakfast"
+                  className={location.pathname === "/mealtime/breakfast" ? "active-mealtime" : ""}
+                >
+                  Breakfast Essentials
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/mealtime/lunch"
+                  className={location.pathname === "/mealtime/lunch" ? "active-mealtime" : ""}
+                >
+                  Lunch Favorites
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/mealtime/dinner"
+                  className={location.pathname === "/mealtime/dinner" ? "active-mealtime" : ""}
+                >
+                  Dinner Specials
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/mealtime/snacks"
+                  className={location.pathname === "/mealtime/snacks" ? "active-mealtime" : ""}
+                >
+                  Healthy Snacks
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/mealtime/drinks"
+                  className={location.pathname === "/mealtime/drinks" ? "active-mealtime" : ""}
+                >
+                  Drinks & Juices
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/mealtime/all"
+                  className={location.pathname === "/mealtime/all" ? "active-mealtime" : ""}
+                >
+                  All Mealtime
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
         <div className="graphicscontent">
-          <div className="featured-title">
-            Featured Mealtime
-            <span className="featured-arrows">
-              <button onClick={() => scrollProducts('left')} aria-label="Scroll left">&#60;</button>
-              <button onClick={() => scrollProducts('right')} aria-label="Scroll right">&#62;</button>
-            </span>
-            <span className="shop-all-link">
-              <Link to="/mealtime">shop all</Link>
-            </span>
-          </div>
-          <div className="products-wrapper"  ref={productsRef}>
-            <div className="products">
-              <div>
-                <img src="public/chair.png" alt="" />
-                <span className="product-label">BEST SELLER</span>
-                <span className="product-name">The Chair</span>
-              </div>
-              <div>
-                <img src="public/bite.png" alt="" />
-                <span className="product-label">BEST SELLER</span>
-                <span className="product-name">First Bites Full Kit</span>
-              </div>
-              <div>
-                <img src="public/plate.png" alt="" />
-                <span className="product-label">BEST SELLER</span>
-                <span className="product-name">Suction Plate</span>
-              </div>
-               <div>
-                <img src="public/chair.png" alt="" />
-                <span className="product-label">BEST SELLER</span>
-                <span className="product-name">The Chair</span>
-              </div>
-              <div>
-                <img src="public/bite.png" alt="" />
-                <span className="product-label">BEST SELLER</span>
-                <span className="product-name">First Bites Full Kit</span>
-              </div>
-              <div>
-                <img src="public/plate.png" alt="" />
-                <span className="product-label">BEST SELLER</span>
-                <span className="product-name">Suction Plate</span>
-              </div>
-            </div>
-          </div>
+          <Outlet />
         </div>
       </div>
     </div>

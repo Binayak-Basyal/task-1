@@ -164,7 +164,7 @@
   }
 
   .mealtime-header{
-        margin-bottom: -2rem;
+        margin-bottom: -1rem;
     }
     .mealtime-header .back-arrow{
         display: none;
@@ -205,10 +205,15 @@
     text-decoration: none;
     transition: color 0.2s;
   }
-  .mealtime-content a:hover {
-    color: #1d2951;
-    text-decoration: underline;
-  }
+.mealtime-left ul li .active-mealtime {
+  color: blue;
+}
+.mealtime-left ul li a.active-playtime {
+  color: blue;
+}
+.mealtime-left ul li a:hover {
+    color: blue;
+}
 
   .mealtime-content > a {
     display: block;
